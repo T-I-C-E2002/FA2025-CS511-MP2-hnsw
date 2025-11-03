@@ -3,6 +3,9 @@ import h5py
 import numpy as np
 import os
 import requests
+import time
+
+
 
 def evaluate_hnsw():
 
@@ -19,6 +22,8 @@ def evaluate_hnsw():
         gt = f['neighbors'][:] #shape : (10000, 100) indices into train
         #print(gt.shape)
     
+    
+    #This was for part-0
     M=16
     index = faiss.IndexHNSWFlat(xb.shape[1], M, faiss.METRIC_L2)
     index.hnsw.efConstruction = 200
@@ -39,6 +44,12 @@ def evaluate_hnsw():
         for idx in top10_indices:
             f.write(f"{idx}\n")
     print(f"Wrote top-10 ANN indices for the first query to {out_path}")
+    
+
+    #this is for part-1
+
+
+
 
 
 if __name__ == "__main__":
